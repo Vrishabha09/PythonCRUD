@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Upload Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"],
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Upload Movie Details</h2>
+    <form action="{% url 'trailor' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- V_Movie_Name -->
+        <div class="form-group">
+            <label for="V_Movie_Name">Movie Name</label>
+            <input type="text" id="V_Movie_Name" name="V_Movie_Name" placeholder="Enter movie name" required>
+        </div>
+
+        <!-- V_Trailer (Video file upload) -->
+        <div class="form-group">
+            <label for="V_Trailer">Trailer (Upload Video)</label>
+            <input type="file" id="V_Trailer" name="V_Trailer" accept="video/*" required>
+        </div>
+
+        <!-- V_Launch_Date -->
+        <div class="form-group">
+            <label for="V_Launch_Date">Launch Date</label>
+            <input type="date" id="V_Launch_Date" name="V_Launch_Date" required>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- {{ form.as_p }} -->
+        <div class="form-group">
+            <input type="submit" value="Upload Movie">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
